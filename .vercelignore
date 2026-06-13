@@ -1,0 +1,5 @@
+backend
+documentation
+*.csv
+.git
+node_modules
