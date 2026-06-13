@@ -10,6 +10,7 @@ import Segmentation from "./pages/Segmentation";
 import Prediction from "./pages/Prediction";
 import type { AnalysisParams, AnalysisResult, ColumnMapping, MiningAlgorithm } from "./types";
 import "./App.css";
+import { API_BASE } from "./utils/api";
 
 type ThemeMode = "light" | "dark";
 type ReadinessState = "idle" | "dataset" | "ready";
@@ -261,7 +262,7 @@ function AppShell() {
         formData.append('top_n', String(params.topN));
         formData.append('column_mapping', JSON.stringify(columnMapping ?? {}));
 
-        const response = await fetch("http://localhost:5000/api/analyze", {
+        const response = await fetch(`${API_BASE}/api/analyze`, {
           method: "POST",
           body: formData,
         });
@@ -284,7 +285,7 @@ function AppShell() {
         }
       } else {
         // For CSV files, send as JSON
-        const response = await fetch("http://localhost:5000/api/analyze", {
+        const response = await fetch(`${API_BASE}/api/analyze`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

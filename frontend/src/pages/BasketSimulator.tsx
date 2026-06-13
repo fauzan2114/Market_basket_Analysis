@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { API_BASE } from "../utils/api";
 import {
   FiActivity,
   FiFilter,
@@ -248,7 +249,7 @@ function BasketSimulator({ analysis, activeFileName, analyzedAt }: BasketSimulat
     setRecommendations([]);
 
     try {
-      const response = await fetch("http://localhost:5000/api/recommendations", {
+      const response = await fetch(`${API_BASE}/api/recommendations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

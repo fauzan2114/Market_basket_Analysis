@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { API_BASE } from "../utils/api";
 import { FiActivity, FiBarChart, FiCopy, FiDownload, FiInfo, FiLoader, FiTarget, FiX } from "react-icons/fi";
 import type { AnalysisResult } from "../types";
 
@@ -59,7 +60,7 @@ function Segmentation({ analysis, datasetLoaded }: SegmentationProps) {
       const avgPrice = spendingMap[spendingTier as keyof typeof spendingMap] || 50;
       const totalQuantity = (ageGroupMap[ageGroup as keyof typeof ageGroupMap] || 50) * (regionMap[region as keyof typeof regionMap] || 1);
 
-      const response = await fetch("http://localhost:5000/api/segments", {
+      const response = await fetch(`${API_BASE}/api/segments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

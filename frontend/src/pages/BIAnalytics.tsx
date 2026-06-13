@@ -32,6 +32,7 @@ import type {
   BIProductRow,
   BITransactionRow,
 } from "../types";
+import { API_BASE } from "../utils/api";
 
 type BIAnalyticsProps = {
   analysis: AnalysisResult | null;
@@ -124,7 +125,7 @@ function BIAnalytics({ analysis, datasetLoaded }: BIAnalyticsProps) {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/bi/overview");
+      const response = await fetch(`${API_BASE}/api/bi/overview`);
       const body = (await response.json().catch(() => null)) as BIOverviewResponse | null;
 
       if (!response.ok || !body || !body.ready) {
@@ -173,7 +174,7 @@ function BIAnalytics({ analysis, datasetLoaded }: BIAnalyticsProps) {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/bi/product-detail?product=${encodeURIComponent(selectedProduct)}`,
+          `${API_BASE}/api/bi/product-detail?product=${encodeURIComponent(selectedProduct)}`,
         );
         const body = (await response.json().catch(() => null)) as BIProductDetailResponse | null;
 

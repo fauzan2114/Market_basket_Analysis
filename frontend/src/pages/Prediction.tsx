@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { API_BASE } from "../utils/api";
 import { NavLink } from "react-router-dom";
 import { FiBell, FiCopy, FiDownload, FiInfo, FiLoader, FiPlus, FiSearch, FiTarget, FiTrendingUp, FiX } from "react-icons/fi";
 import type { AnalysisResult } from "../types";
@@ -100,7 +101,7 @@ function Prediction({ analysis, datasetLoaded }: PredictionProps) {
     setPredictionResult(null);
 
     try {
-      const response = await fetch("http://localhost:5000/api/predict", {
+      const response = await fetch(`${API_BASE}/api/predict`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

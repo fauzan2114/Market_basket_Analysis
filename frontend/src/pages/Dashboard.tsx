@@ -21,6 +21,7 @@ import type {
   MiningAlgorithm,
   SchemaSuggestResponse,
 } from "../types";
+import { API_BASE } from "../utils/api";
 
 type DashboardProps = {
   fileName: string;
@@ -206,12 +207,12 @@ function Dashboard({
       if (isExcelFile && fileObject) {
         const formData = new FormData();
         formData.append("file", fileObject);
-        response = await fetch("http://localhost:5000/api/schema-suggest", {
+        response = await fetch(`${API_BASE}/api/schema-suggest`, {
           method: "POST",
           body: formData,
         });
       } else if (csvText.trim()) {
-        response = await fetch("http://localhost:5000/api/schema-suggest", {
+        response = await fetch(`${API_BASE}/api/schema-suggest`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
